@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Leetcode之Mysql-182. 查找重复的电子邮箱 - null
+          Hello World - null
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2019/11/01/Leetcode之Mysql-182-查找重复的电子邮箱/">
+    <link rel="canonical" href="http://yoursite.com/2019/12/22/hello-world/">
 
     <!-- Bootstrap Core CSS -->
 
@@ -105,11 +105,11 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>Leetcode之Mysql-182. 查找重复的电子邮箱</h1>
+                        <h1>Hello World</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by lancelvlu on
-                            2019-11-01
+                            2019-12-22
                         </span>
                     </div>
                 
@@ -201,73 +201,19 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>题目链接：<a href="https://leetcode-cn.com/problems/duplicate-emails/" target="_blank" rel="noopener">182. 查找重复的电子邮箱</a></p>
-<p>编写一个 SQL 查询，查找 Person 表中所有重复的电子邮箱。</p>
-<p>示例：</p>
-<table>
-<thead>
-<tr>
-<th align="left">id</th>
-<th align="right">Email</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="right"><a href="mailto:a@b.com" target="_blank" rel="noopener">a@b.com</a></td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="right"><a href="mailto:c@d.com" target="_blank" rel="noopener">c@d.com</a></td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="right"><a href="mailto:a@b.com" target="_blank" rel="noopener">a@b.com</a></td>
-</tr>
-</tbody></table>
-<p>根据以上输入，你的查询应返回以下结果：</p>
-<table>
-<thead>
-<tr>
-<th align="left">Email</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="mailto:a@b.com" target="_blank" rel="noopener">a@b.com</a></td>
-</tr>
-</tbody></table>
-<p>说明：所有电子邮箱都是小写字母。</p>
-<h3 id="第一版答案"><a href="#第一版答案" class="headerlink" title="第一版答案"></a>第一版答案</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> Email <span class="keyword">from</span> Person <span class="keyword">where</span> <span class="keyword">count</span>(Email) &gt; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-<p>错误原因：where构建过滤条件时列名必须是原有table中的列明，如这里的Id和Email，不能是count或者是别名，所以where和count不能同时使用，count的值作为判断条件时使用having关键词</p>
-<h3 id="第二版答案"><a href="#第二版答案" class="headerlink" title="第二版答案"></a>第二版答案</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> Email <span class="keyword">from</span> Person <span class="keyword">having</span> <span class="keyword">count</span>(Email) &gt; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>错误原因：在count函数接受一个列的名字Email作为参数的时候只会计算Email列的行数，只有一个值。以题目中的例子分析，第一行<a href="mailto:a@b.com" target="_blank" rel="noopener">a@b.com</a>对应的count值为3。而后面的二三行没有对应的count，即为null，这里having判断第一行符合条件后面两行不符合，恰巧正确。假若以下方表格为例这里将输出“<a href="mailto:a@b.com" target="_blank" rel="noopener">a@b.com</a>”，是错误的（正确答案为空）。</p>
-<table>
-<thead>
-<tr>
-<th align="left">id</th>
-<th align="right">Email</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="right"><a href="mailto:a@b.com" target="_blank" rel="noopener">a@b.com</a></td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="right"><a href="mailto:c@d.com" target="_blank" rel="noopener">c@d.com</a></td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="right"><a href="mailto:d@b.com" target="_blank" rel="noopener">d@b.com</a></td>
-</tr>
-</tbody></table>
-<h3 id="正确答案"><a href="#正确答案" class="headerlink" title="正确答案"></a>正确答案</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> Email <span class="keyword">from</span> Person <span class="keyword">group</span> <span class="keyword">by</span> Email <span class="keyword">having</span> <span class="keyword">count</span>(Email) &gt; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>解析：对于这道题需要先使用group by对Email进行分组，将Email值相同的分到一组。然后在每个分组中使用count(Email)分别计算每个分组的行数，最后通过这个count(Email)的返回值对每个Email分组进行过滤。</p>
-<h3 id="其他正确答案"><a href="#其他正确答案" class="headerlink" title="其他正确答案"></a>其他正确答案</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> Email <span class="keyword">from</span> (<span class="keyword">select</span> Email, <span class="keyword">count</span>(Email) <span class="keyword">as</span> EmailNumber <span class="keyword">from</span> Person <span class="keyword">group</span> <span class="keyword">by</span> Email) <span class="keyword">as</span> temp <span class="keyword">where</span> EmailNumber &gt; <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>注意事项：新建列的别名紧跟函数后，如这里的的EmailNumber。SQL嵌套创建的新table必须有一个自己的名称。</p>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
                 
 
@@ -277,7 +223,7 @@
                     
                     
                         <li class="next">
-                            <a href="/2019/10/03/Hello-Github-Pages/" data-toggle="tooltip" data-placement="top" title="Hello! Github Pages">Next post &rarr;</a>
+                            <a href="/2019/11/01/Leetcode之Mysql-182-查找重复的电子邮箱/" data-toggle="tooltip" data-placement="top" title="Leetcode之Mysql-182. 查找重复的电子邮箱">Next post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -490,7 +436,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://yoursite.com/2019/11/01/Leetcode之Mysql-182-查找重复的电子邮箱/index.html/js/jquery.tagcloud.js",function(){
+        async("http://yoursite.com/2019/12/22/hello-world/index.html/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
